@@ -4,7 +4,8 @@ package ManipulandoArquivo;
 	import java.io.FileWriter;
 	import java.io.BufferedReader;
 	import java.io.BufferedWriter;
-	import java.io.IOException;
+import java.io.File;
+import java.io.IOException;
 	import java.util.Scanner;
 	 
 	public class FileOpen {
@@ -42,6 +43,14 @@ package ManipulandoArquivo;
 		        	System.out.println("Valor não localizado ");
 		        }
 
+		        //Deletar o arquivo
+		        boolean delFile = deleteFile("fileData.txt");
+		        if (delFile) {
+		        	System.out.println("Arquivo Deletado ");
+		        }else {
+		        	System.out.println("Arquivo não localizado ");
+		        
+		        }
 		    }
 	 
 		  
@@ -154,6 +163,23 @@ package ManipulandoArquivo;
 		        
 		    }
 	 
+		    public static boolean deleteFile(String fileName) {
+		    	try {
+		    		// Criando um objeto File com o caminho do arquivo
+		    		File arquivo = new File(fileName);
+	 
+		    		//Verificando se o arquivo existe
+		    		if (arquivo.exists()) {
+		    			// Deletando o arquivo
+		    			arquivo.delete();
+		    			return true;
+		    		}
+	 
+		    	} catch (Exception e) {
+		    		System.err.println("Erro ao deletar o arquivo: " + e.getMessage());
+		    	}
+				return false;
+		    }
 
 	}
 
